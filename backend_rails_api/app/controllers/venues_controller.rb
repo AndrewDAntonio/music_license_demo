@@ -3,9 +3,9 @@ class VenuesController < ApplicationController
 
   # GET /venues
   def index
-    @venues = Venue.all
+    venues = Venue.all
 
-    render json: @venues
+    render json: venues
   end
 
   # GET /venues/1
@@ -15,13 +15,10 @@ class VenuesController < ApplicationController
 
   # POST /venues
   def create
-    @venue = Venue.new(venue_params)
+    venue = Venue.create(username: params[:username], password: params[:password], name: params[:name], capacity: params[:capacity])
+    session[:user_id] = venue.id
 
-    if @venue.save
-      render json: @venue, status: :created, location: @venue
-    else
-      render json: @venue.errors, status: :unprocessable_entity
-    end
+    render json: venue
   end
 
   # PATCH/PUT /venues/1
