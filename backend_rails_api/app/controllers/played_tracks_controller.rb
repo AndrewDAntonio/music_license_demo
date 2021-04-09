@@ -15,13 +15,24 @@ class PlayedTracksController < ApplicationController
 
   # POST /played_tracks
   def create
-    @played_track = PlayedTrack.new(played_track_params)
-
-    if @played_track.save
-      render json: @played_track, status: :created, location: @played_track
+    if Artist.exists?(name: params[:artistName])
+      artist = Artist.find_by(name: params[:artistName])
     else
-      render json: @played_track.errors, status: :unprocessable_entity
+      artist = Artist.create()
     end
+
+    if Track.exists?(title: params[:trackName])
+      track = Track.find_by(title: params[:trackName])
+    else
+      license = License.first
+      track = Track.create(title: params[:trackName], artist_id: artist.id, license_id: license.id)
+    end
+
+    venue = params[:currentUser]
+
+    new_Song = PlayedTrack.create(track_id: track.id, venue_id: venue.id)
+
+    render json: new_Song
   end
 
   # PATCH/PUT /played_tracks/1

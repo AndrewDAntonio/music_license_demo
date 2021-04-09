@@ -4,6 +4,7 @@ import {Route, Switch, withRouter} from 'react-router-dom';
 import Header from './components/Header.js'
 import LoginForm from './components/LoginForm.js'
 import SignupForm from './components/SignupForm.js'
+import PlayedTrackForm from './components/PlayedTrackForm.js'
 
 function App() {
 
@@ -57,6 +58,7 @@ function App() {
         <Switch>
           <Route exact path='/login' render={(routeProps) => <LoginForm handleUpdateCurrentUser={handleUpdateCurrentUser} {...routeProps} />} />
           <Route exact path='/signup' render={(routeProps) => <SignupForm handleUpdateCurrentUser={handleUpdateCurrentUser} {...routeProps} />} />
+          <Route exact path='/addsong' render={(routeProps) => <PlayedTrackForm  currentUser={currentUser} {...routeProps} />} />
         </Switch>
       </main>
     </>

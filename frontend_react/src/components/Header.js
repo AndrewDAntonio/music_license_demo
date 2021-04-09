@@ -16,7 +16,7 @@ export const Header = ({currentUser,handleLogout}) => {
                 <Link to="/about_us">
                   <button className="buttonHeader">About Us</button>
                 </Link>
-                <button className="buttonHeader" onClick={handleLogout}>Logout {currentUser.name}</button>
+                <button className="buttonHeader" onClick={handleLogout}>Logout {currentUser.username}</button>
                 <Link to="/profile">
                   <button className="buttonLogo">Dashboard</button>
                 </Link>
@@ -38,13 +38,12 @@ export const Header = ({currentUser,handleLogout}) => {
       </header>
         <span className="actions">
           <Link to="/">
-          <button className="buttonSubHeader">Lend a Hand</button>
+          <button className="buttonSubHeader">Placeholders</button>
           </Link>
-          <button className="buttonSubHeader">Find a Friend</button>
-          <Link to="/createtask">
-          <button className="buttonSubHeader">Ask For Help</button>
+          <button className="buttonSubHeader">For</button>
+          <Link to="/addsong">
+          <button className="buttonSubHeader">Enter a Played Song</button>
           </Link>
-          
         </span>
       </>
         )
