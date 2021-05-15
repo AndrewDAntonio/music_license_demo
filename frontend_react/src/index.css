@@ -1,13 +1,381 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --orange: rgb(17, 175, 30);
+  --magenta: rgb(17, 175, 30);
+  --gray: #ccc;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* layout */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+h1, h2, h3, h4 {
+  
+  font-weight: 600;
+}
+
+strong {
+  font-weight: 600;
+}
+
+h2.containerH2 {
+  
+}
+ 
+/* Tasks */
+
+ul.playedTrack {
+  list-style-type: none;
+  line-height: 35px
+}
+
+
+li {
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+  background: white;;
+  border: none;
+  border-radius: 1rem;
+  padding: 15px;
+  margin-left: 0.5rem;
+  margin-right: 5rem;
+  margin-top: 0.5rem;
+  vertical-align: middle;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 2px;
+  transition: all 0.2s;
+}
+
+li:focus,
+li:hover {
+  outline: rgb(17, 175, 30);
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 4px;
+}
+
+li:active {
+  box-shadow: rgb(17, 175, 30) 1px -2px 4px;
+}
+
+li span {
+  display:table-cell;
+  vertical-align:middle;
+  padding: 10px;
+}
+
+.dashboardSpan {
+  background: rgb(17, 175, 30);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 1rem;
+  margin-top: 50px;
+  margin-botom: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
+  padding: 15px;
+  float: middle;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.usertask {
+  
+  width: 35%;
+  text-align: center;
+  
+  
+}
+
+.userTaskBlock {
+  display: block;
+  margin: -40px;
+  
+}
+
+.buttonTrack {
+  background: rgb(17, 175, 30);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 1rem;
+  padding: 10px;
+  float: right;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.buttonTask:focus,
+.buttonTask:hover {
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 4px;
+}
+
+.buttonTrack:active {
+  box-shadow: rgba(0, 0, 0, 0.18) 1px -2px 4px;
+}
+
+
+
+/* Header */
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 8rem; 
+  box-shadow: 1px 1px 2px -1px rgba(0,0,0,0.75);
+}
+
+header .logo {
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.buttonLogo {
+  color: rgb(17, 175, 30);
+  font-size: 19px;
+  font-weight: 700;
+  background: white;;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.buttonLogo:focus,
+.buttonLogo:hover {
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 4px;
+}
+
+.buttonLogo:active {
+  box-shadow: rgba(0, 0, 0, 0.18) 1px -2px 4px;
+}
+
+.buttonHeader {
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+  background: white;;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  /* box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 2px; */
+  transition: all 0.2s;
+}
+
+.buttonHeader:focus,
+.buttonHeader:hover {
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 4px;
+}
+
+.buttonHeader:active {
+  box-shadow: rgba(0, 0, 0, 0.18) 1px -2px 4px;
+}
+
+/* Sub Header */
+
+.buttonSubHeader {
+  color: rgb(105, 103, 103);
+  font-size: 14px;
+  font-weight: 500;
+  background: white;;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.buttonSubHeader:focus,
+.buttonSubHeader:hover {
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 4px;
+}
+
+.buttonSubHeader:active {
+  box-shadow: rgba(0, 0, 0, 0.18) 1px -2px 4px;
+}
+
+h2 .search {
+  width: 35%;
+  border-radius: 10px;
+  padding: 0.5rem;
+  display: flex;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 2px;
+}
+
+h2 .search:hover,
+h2 .search:active {
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 4px;
+}
+
+h2 .search input {
+  border: none;
+  font-size: 14px;
+}
+
+h2 .search input[type="text"] {
+  width: 80%;
+  padding: 0.25rem;
+  margin: 0 0.25rem;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+}
+
+h2 .search input[type="text"]:focus {
+  outline: none;
+  border-bottom: 1px solid var(--gray);
+}
+
+h2 .search input[type="submit"] {
+  flex-grow: 1;
+  font-weight: 500;
+  background-color: var(--magenta);
+  padding: 0.5rem;
+  border-radius: 6px;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+h2 .search input[type="submit"]:focus,
+h2 .search input[type="submit"]:active {
+  outline: none;
+  transform: scale(0.95);
+}
+
+/* layout */
+main {
+  padding: 1rem 8rem;
+  margin-left: 140px;
+  font-size: 28px;
+  padding: 0px 10px;
+}
+
+/* Forms */
+.form-container {
+  margin: 1rem auto;
+  max-width: 500px;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 0px 8px;
+  border-radius: 10px;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container form label {
+  font-size: 0.8rem;
+}
+
+.form-container form input, 
+.form-container form textarea, 
+.form-container form select {
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+  padding: 0.25rem;
+  font-weight: bold;
+  border: none;
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 2px;
+}
+
+.form-container form input:focus, 
+.form-container form textarea:focus, 
+.form-container form select:focus {
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+}
+
+.form-container form input[type="submit"] {
+  width: 30%;
+  font-weight: 500;
+  background-color: var(--magenta);
+  padding: 0.5rem;
+  border-radius: 6px;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.form-container form input[type="submit"]:focus,
+.form-container form input[type="submit"]:active {
+  outline: none;
+  transform: scale(0.95);
+}
+
+/* Spinner */
+.spinner-container {
+  width: 100%;
+  margin: 4rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+@keyframes spin {
+  from {
+    transform:rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
+  }
+}
+/* responsiveness */
+@media (min-width: 0) and (max-width: 699px) {
+  .card {
+    flex: 0 1 100%;
+    margin: 1rem 0;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 899px) { 
+  .card {
+    flex: 0 1 calc(50% - 2rem);
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  .card {
+    flex: 0 1 calc(33% - 2rem);
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+  .card {
+    flex: 0 1 calc(25% - 2rem);
+  }
+}
+
+@media (max-width: 1200px) {
+  header,
+  main {
+    padding: 0.75rem 1rem;
+  }
 }

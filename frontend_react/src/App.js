@@ -4,12 +4,12 @@ import {Route, Switch, withRouter} from 'react-router-dom';
 import Header from './components/Header.js'
 import LoginForm from './components/LoginForm.js'
 import SignupForm from './components/SignupForm.js'
-import PlayedTrackForm from './components/PlayedTrackForm.js'
+import Dashboard from './components/Dashboard.js'
 
 function App() {
 
   useEffect(() => {
-    setUser(null)
+    
     getAutologin()
   }, [])
 
@@ -32,12 +32,12 @@ function App() {
       })
   }
 
-  const handleUpdateCurrentUser = user => {
+  function handleUpdateCurrentUser(user) {
     setUser(user)
   }
 
   function getAutologin() {
-    fetch("http://localhost:3000//autologin", {
+    fetch("http://localhost:3000/autologin", {
       credentials: "include"
     })
       .then(r => {
@@ -46,9 +46,20 @@ function App() {
         }
         return r.json()
       })
-      .then(user => this.setState({ currentUser: user }))
+      .then(user => setUser(user))
       .catch(console.error)
   }
+
+  function fetchVenue(id) {
+    fetch(`http://localhost:3000/venues/${id}`)
+    .then(r => r.json())
+      .then(user => {
+        console.log("fetch run", user)
+        handleUpdateCurrentUser(user)})   
+  }
+  
+
+  
   
 
   return (
@@ -58,7 +69,7 @@ function App() {
         <Switch>
           <Route exact path='/login' render={(routeProps) => <LoginForm handleUpdateCurrentUser={handleUpdateCurrentUser} {...routeProps} />} />
           <Route exact path='/signup' render={(routeProps) => <SignupForm handleUpdateCurrentUser={handleUpdateCurrentUser} {...routeProps} />} />
-          <Route exact path='/addsong' render={(routeProps) => <PlayedTrackForm  currentUser={currentUser} {...routeProps} />} />
+          <Route exact path='/dashboard' render={(routeProps) => <Dashboard {...routeProps} fetchVenue={fetchVenue} handleUpdateCurrentUser={handleUpdateCurrentUser} currentUser={currentUser} />} />
         </Switch>
       </main>
     </>

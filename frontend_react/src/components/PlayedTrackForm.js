@@ -5,13 +5,15 @@ import { Link, useHistory } from 'react-router-dom'
 
 
 
-export const PlayedTrackForm = ({currentUser}) => {
+export const PlayedTrackForm = ({currentUser, handleUpdatePlayedSongs, fetchVenue}) => {
     
-    const [formValues, setFormValues] = useState({
-        trackName: "",
-        artistName: "",
-        venue: currentUser
-    })
+    const initialState = {
+      trackName: "",
+      artistName: "",
+      songwriterName: "",
+      venueName: currentUser.name
+  }
+    const [formValues, setFormValues] = useState(initialState)
     
     const history = useHistory()
     
@@ -32,25 +34,31 @@ export const PlayedTrackForm = ({currentUser}) => {
         body: JSON.stringify(formValues)
       })
         .then(r => r.json())
-        .then(playedTrack => {
-          
+        .then(playedTrack => { 
+          setFormValues(initialState)
+          fetchVenue(currentUser.id)
+          handleUpdatePlayedSongs(currentUser.songs)
           
           
         })
     }
         
-        const {trackName, artistName} = formValues
+        const {trackName, artistName, songwriterName} = formValues
         
         return (
             <div className="form-container">
                 <h4>Enter Song Info Below</h4>
                 <form onSubmit={handleSubmit}>
-                    <div>
+                    <div> 
                         <label>Artist:</label>
                         <input type="text" name="artistName" onChange={handleInputChange} value={artistName} />
                     </div>
                     <div>
-                        <label>Song Name:</label>
+                        <label>Songwriter: </label>
+                        <input type="text" name="songwriterName" onChange={handleInputChange} value={songwriterName} />
+                    </div>
+                    <div>
+                        <label>Song Name: </label>
                         <input type="text" name="trackName" onChange={handleInputChange} value={trackName} rows="10" cols="40"/>
                     </div>
                     <input type="submit" value="Submit" />

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :shows
-  resources :songwriter_tracks
   resources :songwriters
   resources :played_tracks
   resources :tracks

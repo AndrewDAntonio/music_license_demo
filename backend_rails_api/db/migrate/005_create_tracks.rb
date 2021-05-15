@@ -5,6 +5,7 @@ class CreateTracks < ActiveRecord::Migration[6.0]
       t.string :ISRC
       t.integer :artist_id
       t.integer :license_id
+      t.integer :songwriter_id
 
       t.timestamps
     end

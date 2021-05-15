@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 9) do
 
   create_table "licenses", force: :cascade do |t|
     t.string "name"
-    t.integer "cost"
+    t.float "cost"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -45,13 +45,6 @@ ActiveRecord::Schema.define(version: 9) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "songwriter_tracks", force: :cascade do |t|
-    t.integer "track_id"
-    t.integer "songwriter_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "songwriters", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -63,6 +56,7 @@ ActiveRecord::Schema.define(version: 9) do
     t.string "ISRC"
     t.integer "artist_id"
     t.integer "license_id"
+    t.integer "songwriter_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

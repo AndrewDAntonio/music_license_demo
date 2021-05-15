@@ -15,20 +15,31 @@ class PlayedTracksController < ApplicationController
 
   # POST /played_tracks
   def create
+    
     if Artist.exists?(name: params[:artistName])
       artist = Artist.find_by(name: params[:artistName])
     else
-      artist = Artist.create()
+      artist = Artist.create(name: params[:artistName] )
+    end
+
+    if Songwriter.exists?(name: params[:songwriterName])
+      songwriter = Songwriter.find_by(name: params[:songwriterName])
+    else
+      songwriter = Songwriter.create(name: params[:songwriterName])
     end
 
     if Track.exists?(title: params[:trackName])
       track = Track.find_by(title: params[:trackName])
     else
       license = License.first
-      track = Track.create(title: params[:trackName], artist_id: artist.id, license_id: license.id)
+      track = Track.create(title: params[:trackName], artist_id: artist.id, songwriter_id: songwriter.id, license_id: license.id)
     end
 
-    venue = params[:currentUser]
+    
+
+    venue = Venue.find_by(name: params[:venueName])
+
+    
 
     new_Song = PlayedTrack.create(track_id: track.id, venue_id: venue.id)
 

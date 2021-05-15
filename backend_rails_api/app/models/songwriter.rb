@@ -1,5 +1,5 @@
 class Songwriter < ApplicationRecord
 
-    has_many :songwriter_tracks
+    has_many :tracks
     
 end
