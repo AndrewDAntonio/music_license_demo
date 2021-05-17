@@ -4,22 +4,37 @@ import PlayedTrack from '../components/PlayedTrack.js'
 
 
 
-export const PlayedTrackContainer = ({playedSongs}) => {
+export const PlayedTrackContainer = ({playedSongs, handleUpdatePayment}) => {
 
     const [componentState, setComponentState] = useState(playedSongs)
+    
     const renderTracks = playedSongs.map(playedTrack => {
         return <PlayedTrack
                     key={playedTrack.id}
                     playedTrack={playedTrack}
+                    handleUpdatePayment={handleUpdatePayment}
                 />
     })
 
+    const renderHeader = () => {
+        let headerElement = ['song name', 'songwriter', 'license fee', 'payment status']
+
+        return headerElement.map((key, index) => {
+            return <th key={index}>{key.toUpperCase()}</th>
+        })
+    }
+
     return (
         <>
-            <h2 className= "containerH2">Manage Licensing Fees</h2>
-            <ul className= "playedTrack">
-                {renderTracks}
-            </ul>
+            <h2 id='title'>Manage Licensing Fees</h2>
+            <table id='tracks'>
+                <thead>
+                    <tr>{renderHeader()}</tr>
+                </thead>
+                <tbody>
+                    {renderTracks}
+                </tbody>
+            </table>
         </>
     )
 }

@@ -2,24 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom'
 
 
-export const PlayedTrack = ({playedTrack}) => {
+export const PlayedTrack = ({playedTrack, handleUpdatePayment}) => {
 
-    console.log(playedTrack)
-    
+    const {id, title, songwriter, license_cost, payed} = playedTrack
+    console.log(id)
     return (
-        <li>
-            <span>Title: {playedTrack.title} </span>
-            <span>Songwriter: {playedTrack.songwriter} </span>
-            {playedTrack.payed ? (
-                <span>Status: Payed</span>
+        <tr>
+            <td>{title} </td> 
+            <td>{songwriter} </td>
+            <td>${license_cost}</td>
+            {payed ? (
+                <td>Paid</td>
             ) : (
-                <>
-                <span>License Fee: $1</span>
-                <span><button className= 'buttonTrack'>Pay Now</button></span>
-                </>
+                <td><button className= 'buttonTrack' onClick={() => handleUpdatePayment(id)}>Pay Now</button></td>
             )}
             
-        </li>
+        </tr>
     )
 }
 

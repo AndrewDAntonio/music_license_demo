@@ -48,11 +48,10 @@ class PlayedTracksController < ApplicationController
 
   # PATCH/PUT /played_tracks/1
   def update
-    if @played_track.update(played_track_params)
-      render json: @played_track
-    else
-      render json: @played_track.errors, status: :unprocessable_entity
-    end
+    played_track = PlayedTrack.find_by(id: params[:id])
+    played_track.update(payed: true)
+
+    render json: played_track
   end
 
   # DELETE /played_tracks/1

@@ -18,21 +18,23 @@ export const Dashboard = ({currentUser, handleUpdateCurrentUser, fetchVenue}) =>
 
     
     
-    const totalOwed = playedSongs.map(song => {
+    const totalOwed = playedSongs.length && playedSongs.map(song => {
             if(!song.payed) { 
-                return 1 
+                return song.license_cost
             } else {
                 return 0
             }
     }).reduce((total, amount) => { return total += amount})
 
+
+
     
-    const totalPaid = playedSongs.map(song => {
+    const totalPaid = playedSongs.length && playedSongs.map(song => {
         if(song.payed) { 
             return song.license_cost 
         } else {
             return 0
-        }
+        } 
     }).reduce((total, amount) => { return total += amount})
 
     const grandTotal = totalPaid + totalOwed
@@ -41,17 +43,35 @@ export const Dashboard = ({currentUser, handleUpdateCurrentUser, fetchVenue}) =>
     function handleUpdatePlayedSongs(tracks) {
         setPlayedSongs(tracks) 
     }
+
+    function handleUpdatePayment(id) {
+        
+
+        fetch(`http://localhost:3000/played_tracks/`+ id, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json" 
+            },
+            credentials: "include",
+            body: JSON.stringify(id)
+        })
+        .then(r => r.json())
+        .then((updatedTrack) => {
+            fetchVenue(currentUser.id)
+            handleUpdatePlayedSongs(currentUser.songs)
+            
+            
+        })
+    }
     
     
     return (
         <>
             
-            <PlayedTrackContainer  playedSongs={playedSongs}/>
-            <div></div>
+            <PlayedTrackContainer  handleUpdatePayment={handleUpdatePayment} playedSongs={playedSongs}/>
             <span className= "dashboardSpan">Total Licenses Outstanding: ${totalOwed}</span>
             <span className= "dashboardSpan"> Total Licenses Paid: ${totalPaid}</span>
             <span className= "dashboardSpan"> Grand Total: ${grandTotal} </span>
-            <div></div>
             <PlayedTrackForm currentUser={currentUser} fetchVenue={fetchVenue} handleUpdateCurrentUser={handleUpdateCurrentUser} handleUpdatePlayedSongs={handleUpdatePlayedSongs} />
 
         </>

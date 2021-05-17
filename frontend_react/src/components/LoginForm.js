@@ -33,7 +33,7 @@ export const LoginForm = ({handleUpdateCurrentUser}) => {
       .then(user => {
         handleUpdateCurrentUser(user)
         history.push({
-          pathname: "/"
+          pathname: "/dashboard"
         })
       })
   }
