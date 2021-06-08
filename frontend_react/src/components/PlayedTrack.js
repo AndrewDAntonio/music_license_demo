@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom'
 export const PlayedTrack = ({playedTrack, handleUpdatePayment}) => {
 
     const {id, title, songwriter, license_cost, payed} = playedTrack
-    console.log(id)
+    console.log(playedTrack)
     return (
         <tr>
             <td>{title} </td> 
